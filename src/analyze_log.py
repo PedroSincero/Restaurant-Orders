@@ -5,7 +5,7 @@ from collections import Counter
 def days_the_customer_doesnt_show_up(client):
     raise NotImplementedError
 
-
+# refatorar
 def csv_importer(path_to_file):
     log = {}
     with open(path_to_file) as file:
@@ -70,6 +70,17 @@ def customer_dish(orders):
     return result
 
 
+def never_dishes(orders, client):
+    all_dishes = get_all_dishes("data/orders_1.csv")
+    order_dish = customer_dish(orders[client])
+
+    return all_dishes.difference(order_dish)
+
+def never_days(orders, client):
+    all_days = get_all_days("data/orders_1.csv")
+    order_days = days_customer_shows_up(orders[client])
+    return all_days.difference(order_days)
+
 def analyze_log(path_to_file):
     orders_client = csv_importer(path_to_file)
     biggest_order_Maria = most_requested_dish_by(orders_client, 'maria')
@@ -98,6 +109,17 @@ def analyze_log(path_to_file):
         for row in result:
             file.write(f"{str(row)}\n")
 
+
+def format_order(order):
+    log = {}
+    for row in order:
+        if row[0] not in log:
+            log[row[0]] = [[row[1], row[2]]]
+        else:
+            log[row[0]].append([row[1], row[2]])
+    print(log)
+    return log
 # result = csv_importer("data/orders_1.csv")
 # # most_requested_dish_by(result, 'maria')
 # print(result)
+
