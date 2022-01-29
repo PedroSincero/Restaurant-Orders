@@ -1,8 +1,10 @@
-import csv;
+import csv
 from collections import Counter
+
 
 def days_the_customer_doesnt_show_up(client):
     raise NotImplementedError
+
 
 def csv_importer(path_to_file):
     log = {}
@@ -15,6 +17,7 @@ def csv_importer(path_to_file):
                 log[row[0]].append([row[1], row[2]])
     return log
 
+
 def get_all_dishes(path_to_file):
     result = set()
     with open(path_to_file) as file:
@@ -23,6 +26,7 @@ def get_all_dishes(path_to_file):
             if row[1] not in result:
                 result.add(row[1])
     return result
+
 
 def get_all_days(path_to_file):
     result = set()
@@ -33,12 +37,14 @@ def get_all_days(path_to_file):
                 result.add(row[2])
     return result
 
+
 def days_customer_shows_up(orders):
     result = set()
     for order in orders:
         if order[1] not in result:
             result.add(order[1])
     return result
+
 
 def most_requested_dish_by(orders, client):
     result = []
@@ -47,12 +53,14 @@ def most_requested_dish_by(orders, client):
         result.append(i[0])
     return Counter(result).most_common(1)[0][0]
 
+
 def many_dishes_eat(orders, dish):
     result = 0
     for order in orders:
         if order[0] == dish:
             result += 1
     return result
+
 
 def customer_dish(orders):
     result = set()
@@ -66,13 +74,14 @@ def analyze_log(path_to_file):
     orders_client = csv_importer(path_to_file)
     biggest_order_Maria = most_requested_dish_by(orders_client, 'maria')
 
-    how_many_times_Arnaldo_ordered_hamburgers = many_dishes_eat(orders_client['arnaldo'], 'hamburguer')
+    how_many_times_Arnaldo_ordered_hamburgers = many_dishes_eat(
+        orders_client['arnaldo'], 'hamburguer')
 
     # refatorar 1
     joao_order_dish = customer_dish(orders_client['joao'])
     all_dishes = get_all_dishes(path_to_file)
     joao_never_asked = all_dishes.difference(joao_order_dish)
-    
+
     # refatorar 2
     joao_order_days = days_customer_shows_up(orders_client['joao'])
     all_days = get_all_days(path_to_file)
