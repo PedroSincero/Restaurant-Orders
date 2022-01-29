@@ -33,7 +33,7 @@ class TrackOrders:
         return never_days(data, costumer)
 
     def get_busiest_day(self):
-        # Agradecimentos a Denis Rossati 
+        # Agradecimentos a Denis Rossati
         # Turma 10 Tribo B por me mostrar o | mode |
         return mode([order[2] for order in self.orders])
 
