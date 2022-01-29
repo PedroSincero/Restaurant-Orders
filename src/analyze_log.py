@@ -6,6 +6,8 @@ def days_the_customer_doesnt_show_up(client):
     raise NotImplementedError
 
 # refatorar
+
+
 def csv_importer(path_to_file):
     log = {}
     with open(path_to_file) as file:
@@ -76,10 +78,12 @@ def never_dishes(orders, client):
 
     return all_dishes.difference(order_dish)
 
+
 def never_days(orders, client):
     all_days = get_all_days("data/orders_1.csv")
     order_days = days_customer_shows_up(orders[client])
     return all_days.difference(order_days)
+
 
 def analyze_log(path_to_file):
     orders_client = csv_importer(path_to_file)
@@ -122,4 +126,3 @@ def format_order(order):
 # result = csv_importer("data/orders_1.csv")
 # # most_requested_dish_by(result, 'maria')
 # print(result)
-
