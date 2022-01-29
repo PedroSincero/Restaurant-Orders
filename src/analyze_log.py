@@ -68,10 +68,12 @@ def analyze_log(path_to_file):
 
     how_many_times_Arnaldo_ordered_hamburgers = many_dishes_eat(orders_client['arnaldo'], 'hamburguer')
 
+    # refatorar 1
     joao_order_dish = customer_dish(orders_client['joao'])
     all_dishes = get_all_dishes(path_to_file)
     joao_never_asked = all_dishes.difference(joao_order_dish)
     
+    # refatorar 2
     joao_order_days = days_customer_shows_up(orders_client['joao'])
     all_days = get_all_days(path_to_file)
     joao_never_days = all_days.difference(joao_order_days)
@@ -87,6 +89,6 @@ def analyze_log(path_to_file):
         for row in result:
             file.write(f"{str(row)}\n")
 
-result = csv_importer("data/orders_1.csv")
-# most_requested_dish_by(result, 'maria')
-print(result)
+# result = csv_importer("data/orders_1.csv")
+# # most_requested_dish_by(result, 'maria')
+# print(result)
