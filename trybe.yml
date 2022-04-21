@@ -1,8 +1,0 @@
-ignore_files:
-  - tests/
-  - .editorconfig
-  - dev-requirements.txt
-  - pyproject.toml
-  - requirements.txt
-  - setup.cfg
-  - setup.py
